@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private float gravityValue = -9.81f;
     private InputManager inputManager;
     private Transform cameraTransform;
+    public bool zip, isZipping;
+    public GameObject endZip;
+    private Vector3 endZipPos;
+
     //talent bools
     private void Start()
     {
@@ -24,12 +28,20 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
-      
+        endZipPos = endZip.transform.position; 
     }
 
 
     void Update()
     {
+
+        if (isZipping)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endZipPos, 0.05f);
+
+            return;
+        }
+
         groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && playerVelocity.y < 0)
@@ -53,11 +65,20 @@ public class PlayerController : MonoBehaviour
     }
 
  
-    private void Interacted(string color)
+    private void pickupjump()
     {
-   
+        jumpHeight = 8;
     }
 
+    private void pickupzip()
+    {
+        zip = true;
+    }
+
+    private void usezip()
+    {
+        isZipping = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "EndGamePortal")
