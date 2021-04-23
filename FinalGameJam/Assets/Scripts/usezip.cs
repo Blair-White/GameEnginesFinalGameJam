@@ -10,6 +10,7 @@ public class usezip : MonoBehaviour
     private GameObject mPlayer;
     private bool inrange;
     private bool isdestroyed;
+    public GameObject c1, c2, c3, aud;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,11 @@ public class usezip : MonoBehaviour
                 //Destroy(cube);
                 textprompt.SetActive(false);
                 mPlayer.SendMessage("usezip");
+                c1.SendMessage("ActivateZipline");
+                c2.SendMessage("ActivateZipline");
+                c3.SendMessage("ActivateZipline");
+                aud.SetActive(true);
+                //SoundMgr.instance.PlaySoundOneShot(SoundMgr.instance.zipline);
                 isdestroyed = true;
             }
         }

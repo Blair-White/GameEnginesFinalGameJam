@@ -22,9 +22,11 @@ public class pickupzip : MonoBehaviour
             if (InputManager.Instance.Interacted())
             {
                 Destroy(cube);
+                
                 textprompt.SetActive(false);
                 GameObject.Find("Player").SendMessage("pickupzip");
                 isdestroyed = true;
+                inrange = false;
             }
         }
     }

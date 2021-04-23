@@ -22,9 +22,11 @@ public class doublejumppickup : MonoBehaviour
             if (InputManager.Instance.Interacted())
             {
                 Destroy(cube);
+                
                 textprompt.SetActive(false);
                 GameObject.Find("Player").SendMessage("pickupjump");
                 isdestroyed = true;
+                inrange = false;
             }
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class zipCubes : MonoBehaviour
 {
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class zipCubes : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void ActivateZipline()
+    {
+        animator.SetBool("isOpen", true);
     }
 }

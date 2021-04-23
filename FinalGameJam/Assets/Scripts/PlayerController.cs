@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
         if (isZipping)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endZipPos, 0.05f);
-
+            transform.position = Vector3.MoveTowards(transform.position, endZipPos, 0.3f);
+            
             return;
         }
 
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         if (inputManager.PlayerJumped() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            SoundMgr.instance.PlaySoundOneShot(SoundMgr.instance.jump);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -68,16 +69,19 @@ public class PlayerController : MonoBehaviour
     private void pickupjump()
     {
         jumpHeight = 8;
+        SoundMgr.instance.PlaySoundOneShot(SoundMgr.instance.pickup);
     }
 
     private void pickupzip()
     {
         zip = true;
+        SoundMgr.instance.PlaySoundOneShot(SoundMgr.instance.pickup);
     }
 
     private void usezip()
     {
         isZipping = true;
+       
     }
     private void OnTriggerEnter(Collider other)
     {
